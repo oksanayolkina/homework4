@@ -17,7 +17,8 @@ function getLoginView(): string
             <input type='password' name='password' placeholder='Password'>
             <br>
             <input type='submit' name='Register'>
-        </form><br>Don't have an account <a href='/?action=register'>register</a>
+        </form>
+        <br>Don't have an account <a href='/?action=register'>register</a>
     ";
 
     return $html;
@@ -33,7 +34,8 @@ function getRegisterView(): string
             <input type='password' name='password' placeholder='Password'>
             <br>
             <input type='submit' name='Register'>
-        </form><br>Have an account <a href='/?action=login'>login</a>
+        </form>
+        <br>Have an account <a href='/?action=login'>login</a>
     ";
 }
 
