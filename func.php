@@ -42,17 +42,35 @@ function getUsersList(): array
 
 function createUser( string $login, string $password ): bool
 {
-    $newUser =
-    [
+    $newUser = [
         'login'    => $login,
-        'password' => md5( $password )
+        'password' => md5( $password ),
     ];
 
-    $users = readJsonFile( USERS_FILE );
+    $users   = readJsonFile( USERS_FILE );
     $users[] = $newUser;
-    writeJsonFile($users, USERS_FILE);
+    writeJsonFile( $users, USERS_FILE );
+
+    $_SESSION['data']['user'] = $newUser;
+    header( "Location: /" );
 
     return true;
+}
+
+function loginUser(string $login, string $pass)
+{
+    $users = readJsonFile(USERS_FILE);
+
+    foreach ($users as $user) {
+        if ($user['login'] === $login && $user['password'] === md5($pass)) {
+            echo "User found {$user['login']}";
+            $_SESSION['data']['user'] = $user;
+            header("Location: /");
+            return;
+        }
+    }
+
+    header("Location: /?action=login&error=User not found");
 }
 
 function readJsonFile( string $filename ): array
@@ -64,4 +82,13 @@ function writeJsonFile( array $data, string $filename ): void
 {
     $jsonString = json_encode( $data );
     file_put_contents( $filename , $jsonString );
+}
+
+function getMainPageView()
+{
+    if (isset($_SESSION['data']['user']['login'])) {
+        return "Welcome back, " . $_SESSION['data']['user']['login']. " You can <a href='/?action=logout'>Logout</a>";
+    }
+
+    return "Hello ANON, you can <a href='/?action=login'>Login</a> or <a href='/?action=register'>Register</a>";
 }

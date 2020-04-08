@@ -15,7 +15,9 @@ switch( $action )
         }
         else
         {
-            echo "Спроба залогінити користувача";
+            $login = $_POST['login'];
+            $password = $_POST['password'];
+            loginUser($login, $password);
         }
         break;
     case "register":
@@ -25,14 +27,14 @@ switch( $action )
         }
         else
         {
-            $login    = $_POST['login'];
+            $login = $_POST['login'];
             $password = $_POST['password'];
-            createUser( $login, $password );
-            echo "Спроба зареєструвати користувача";
+            createUser($login, $password);
         }
         break;
     case "logout":
         session_destroy();
+        header( "Location: /" );
         break;
     case "index":
     default:
