@@ -11,7 +11,7 @@ switch( $action )
     case "login":
         if( $_SERVER['REQUEST_METHOD'] === 'GET' )
         {
-            echo "Сторінка ЛОГІН";
+            echo getLoginView();
         }
         else
         {
@@ -21,12 +21,18 @@ switch( $action )
     case "register":
         if( $_SERVER['REQUEST_METHOD'] === 'GET' )
         {
-            echo "Сторінка РЕЄСТРАЦІЯ";
+            echo getRegisterView();
         }
         else
         {
+            $login    = $_POST['login'];
+            $password = $_POST['password'];
+            createUser( $login, $password );
             echo "Спроба зареєструвати користувача";
         }
+        break;
+    case "logout":
+        session_destroy();
         break;
     case "index":
     default:
