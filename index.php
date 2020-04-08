@@ -30,6 +30,7 @@ switch( $action )
             $login = $_POST['login'];
             $password = $_POST['password'];
             createUser($login, $password);
+            echo "I WILL TRY TO REGISTER USER";
         }
         break;
     case "logout":
@@ -38,5 +39,5 @@ switch( $action )
         break;
     case "index":
     default:
-        echo "main page";
+        echo getMainPageView();
 }
