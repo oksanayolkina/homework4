@@ -96,5 +96,5 @@ function getMainPageView()
         return "Welcome back, " . $_SESSION['data']['user']['login'] . " You can <a href='/?action=logout'>Logout</a>";
     }
 
-    return "Hello ANON, you can <a href='/?action=login'>Login</a> or <a href='/?action=register'>Register</a>";
+    return "Hello ANON, you can <a href='/?action=login'>login</a> or <a href='/?action=register'>register</a>";
 }
