@@ -5,7 +5,6 @@ require_once "func.php";
 
 $action = $_GET['action'] ?? 'index';
 
-
 switch( $action )
 {
     case "login":
@@ -15,9 +14,9 @@ switch( $action )
         }
         else
         {
-            $login = $_POST['login'];
+            $login    = $_POST['login'];
             $password = $_POST['password'];
-            loginUser($login, $password);
+            loginUser( $login, $password );
         }
         break;
     case "register":
@@ -27,11 +26,14 @@ switch( $action )
         }
         else
         {
-            $login = $_POST['login'];
+            $login    = $_POST['login'];
             $password = $_POST['password'];
-            createUser($login, $password);
+            createUser( $login, $password );
             echo "I WILL TRY TO REGISTER USER";
         }
+        break;
+    case 'session':
+        print_r( $_SESSION );
         break;
     case "logout":
         session_destroy();
