@@ -82,7 +82,6 @@ function readJsonFile( string $fileName ): array
     return json_decode( ( file_get_contents( $fileName ) ?? '[]' ), true ) ?? [];
 }
 
-
 function writeJsonFile( array $data, string $fileName ): void
 {
     $jsonString = json_encode( $data );
